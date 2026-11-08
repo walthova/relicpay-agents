@@ -1,0 +1,18 @@
+# Keys and secrets: never commit
+.keys/
+*.json.key
+.env
+.env.*
+!.env.example
+id.json
+*-keypair.json
+
+# Build output
+target/
+node_modules/
+.anchor/
+test-ledger/
+.next/
+out/
+*.log
+.DS_Store
