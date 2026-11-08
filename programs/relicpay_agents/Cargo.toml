@@ -1,0 +1,24 @@
+[package]
+name = "relicpay_agents"
+version = "0.1.0"
+description = "RelicPay Agents: on-chain spending mandates for AI agents that buy now, pay later"
+edition = "2021"
+# Matches the Rust shipped in the Solana platform-tools used to build the SBF
+# binary; keeps dependency resolution on versions that toolchain can compile.
+rust-version = "1.84"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "relicpay_agents"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+
+[dependencies]
+anchor-lang = { version = "0.32.1", features = ["init-if-needed"] }
+anchor-spl = { version = "0.32.1", features = ["token", "associated_token"] }

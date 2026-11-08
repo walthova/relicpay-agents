@@ -1,0 +1,27 @@
+{
+  "name": "relicpay-agents",
+  "private": true,
+  "type": "commonjs",
+  "engines": { "node": ">=22.12" },
+  "scripts": {
+    "test": "node scripts/test.js",
+    "agent": "ts-node --transpile-only agent/agent.ts",
+    "demo": "ts-node --transpile-only scripts/demo.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.97.0",
+    "@coral-xyz/anchor": "^0.32.1",
+    "@solana/spl-token": "^0.4.6",
+    "@solana/web3.js": "^1.95.4",
+    "bn.js": "^5.2.3",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/bn.js": "^5.2.0",
+    "@types/chai": "^4.3.12",
+    "@types/mocha": "^10.0.6",
+    "chai": "^4.4.1",
+    "mocha": "^10.4.0",
+    "typescript": "^5.4.5"
+  }
+}
