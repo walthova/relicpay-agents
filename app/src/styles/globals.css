@@ -93,3 +93,10 @@ button.revoke {
   .stats { grid-template-columns: repeat(2, 1fr); }
   .feed li { flex-direction: column; align-items: flex-start; }
 }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: transparent; color: var(--text); border: 1px solid var(--line); min-height: 36px; padding: 6px 12px; font-size: 13px; font-weight: 500; }
+.chip:hover { border-color: var(--accent); }
+.feed li.approved b { color: var(--ok); }
+.feed li.blocked b { color: var(--danger); }
+.feed li p { margin: 4px 0 0; font-size: 14px; }

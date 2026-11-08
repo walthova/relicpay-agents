@@ -27,6 +27,11 @@ export const COLLATERAL = pda(Buffer.from("collateral"));
 export const vaultOf = (owner: PublicKey) => pda(Buffer.from("vault"), owner.toBuffer());
 export const mandateOf = (owner: PublicKey, agent: PublicKey) =>
   pda(Buffer.from("mandate"), owner.toBuffer(), agent.toBuffer());
+export const agreementOf = (mandate: PublicKey, index: number) => {
+  const idx = Buffer.alloc(4);
+  idx.writeUInt32LE(index);
+  return pda(Buffer.from("agreement"), mandate.toBuffer(), idx);
+};
 export const ata = (owner: PublicKey) => getAssociatedTokenAddressSync(MINT, owner);
 
 export function programFor(connection: Connection, wallet: AnchorWallet): any {

@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import BN from "bn.js";
-import { PublicKey } from "@solana/web3.js";
+import { Keypair, LAMPORTS_PER_SOL, PublicKey, SystemProgram, Transaction } from "@solana/web3.js";
 import { useAnchorWallet, useConnection } from "@solana/wallet-adapter-react";
+import { AgentConsole, loadDemoAgent } from "../components/AgentConsole";
 import {
   COLLATERAL,
   LIQUIDITY,
@@ -55,7 +56,9 @@ export default function Home() {
   const [budget, setBudget] = useState("60");
   const [cap, setCap] = useState("40");
   const [hours, setHours] = useState("24");
-  const [merchantList, setMerchantList] = useState(Object.values(MERCHANTS).join("\n"));
+  const [merchantList, setMerchantList] = useState(Object.keys(MERCHANTS).join("\n"));
+  const [demoAgent, setDemoAgent] = useState<Keypair | null>(null);
+  useEffect(() => setDemoAgent(loadDemoAgent()), []);
 
   const refresh = useCallback(async () => {
     if (!program || !wallet) return;
@@ -120,6 +123,11 @@ export default function Home() {
         .split(/[\s,]+/)
         .filter(Boolean)
         .map((m) => new PublicKey(MERCHANTS[m] ?? m));
+      // The built-in demo agent needs a little devnet SOL for its own fees.
+      const fundAgent =
+        demoAgent && agent.equals(demoAgent.publicKey)
+          ? [SystemProgram.transfer({ fromPubkey: owner!, toPubkey: agent, lamports: 0.03 * LAMPORTS_PER_SOL })]
+          : [];
       return program!.methods
         .createMandate({
           budget: USDC(Number(budget)),
@@ -128,6 +136,7 @@ export default function Home() {
           allowedMerchants: allowed,
         })
         .accountsPartial({ owner, vault: vaultOf(owner!), agent, mandate: mandateOf(owner!, agent) })
+        .preInstructions(fundAgent)
         .rpc();
     });
 
@@ -234,6 +243,11 @@ export default function Home() {
             </h2>
             <label>Agent public key</label>
             <input value={agentKey} onChange={(e) => setAgentKey(e.target.value)} placeholder="The agent's own address" />
+            {demoAgent && (
+              <button className="ghost" onClick={() => setAgentKey(demoAgent.publicKey.toBase58())}>
+                Use the built-in demo agent
+              </button>
+            )}
             <div className="row3">
               <div>
                 <label>Budget</label>
@@ -271,6 +285,15 @@ export default function Home() {
               <p className="muted">{mandates.length - active.length} revoked mandate(s)</p>
             )}
           </section>
+
+          {demoAgent && owner && (
+            <AgentConsole
+              connection={connection}
+              agent={demoAgent}
+              owner={owner}
+              onDone={() => refresh().catch(() => {})}
+            />
+          )}
 
           <section className="card wide">
             <h2>
