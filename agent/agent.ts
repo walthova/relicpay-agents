@@ -82,13 +82,15 @@ function resolveMerchant(m: string): PublicKey {
   return named ? named[1] : new PublicKey(m);
 }
 
-/** Preview, then send. Returns true if the chain accepted the purchase. */
-export async function act(agent: Keypair, owner: PublicKey, intent: Intent, log = console.log): Promise<boolean> {
+export type ActResult = { ok: boolean; sig?: string; code?: string; message?: string };
+
+/** Preview, then send. Reports whether the chain accepted the purchase. */
+export async function act(agent: Keypair, owner: PublicKey, intent: Intent, log = console.log): Promise<ActResult> {
   const merchant = resolveMerchant(intent.merchant);
   const { mandate, line, debt } = await status(owner, agent.publicKey);
   if (!mandate) {
     log("  No mandate exists for this agent. The owner has not given it permission to spend.");
-    return false;
+    return { ok: false, code: "NoMandate" };
   }
   const amount = USDC(intent.amount);
   const remainingAfter = Number(mandate.budget.sub(mandate.spent).sub(amount).toString());
@@ -116,11 +118,11 @@ export async function act(agent: Keypair, owner: PublicKey, intent: Intent, log 
       .rpc();
     log(`  APPROVED on-chain. ${merchantName(merchant)} paid ${intent.amount} USDC up front by the pool.`);
     log(`  ${explorerTx(sig)}`);
-    return true;
+    return { ok: true, sig };
   } catch (err) {
     const { code, message } = explainError(err);
     log(`  BLOCKED on-chain (${code}): ${message}`);
-    return false;
+    return { ok: false, code, message };
   }
 }
 

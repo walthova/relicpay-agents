@@ -1,0 +1,42 @@
+{
+  "cluster": "devnet",
+  "recordedAt": "2026-11-08T11:52:34.479Z",
+  "steps": {
+    "deposit": {
+      "sig": "65MTY78NTFagzwqjhciNe84XksnoUaSdPEPC8kkKstEQx62RR6y1j2NTENfwKNEkXW7duNQVz2nrg7wmg4j3MURB"
+    },
+    "mandate": {
+      "sig": "EhyT8JgLuYSkJwEHZNHibyH5DNDEznbR1RFJeMH7aGnqJ4i6rdpE58pVpFgPkSYTcqg5Lj9uAM5hPDkk1gdR6Vb"
+    },
+    "buy40": {
+      "ok": true,
+      "sig": "qAL8YryWyYgZZyjjKGk6muSC6kWuDSFhE3wmDEtUMSRsJWppow5wvqZhu9oHV4UUBg8pw9rMqj5nvqLCCdPzYxt"
+    },
+    "buy50": {
+      "ok": false,
+      "code": "OverPurchaseCap",
+      "message": "Blocked: this purchase is bigger than the agent's per-purchase limit."
+    },
+    "injection": {
+      "ok": false,
+      "code": "MerchantNotAllowed",
+      "message": "Blocked: this merchant is not on the owner's approved list."
+    },
+    "revoke": {
+      "sig": "2qHmoF4HSLuSDfghW5TQh7Mt26YkmMX2ZyXnWkpgSQW6mWHNu2eqAE6jD1ZdCkzVM2jyG1aqduHRNeMUcEPgstK7"
+    },
+    "afterRevoke": {
+      "ok": false,
+      "code": "MandateRevoked",
+      "message": "Blocked: the owner revoked this agent's spending permission."
+    },
+    "repay": {
+      "sig": "4Uan1Z9Kq1M5vBaFoMTgnuAhtB7mgw3HiKWE3u98RV5T8Xo2nHrUUU4eZvTjGorJrGwYkewoFrGRFDZTnYpQgicm",
+      "loansRepaid": 1
+    }
+  },
+  "owner": "4SfRTzjuuU7HT33dUYrA4Eq6VTg7V3BdWcR2HhxewnwB",
+  "agent": "9S7aEinrhSoXcb3RQgPYeQ48hKW2WWi2dC4jhgnQUfwz",
+  "merchant": "8meRDoCKnGK2fc5a3rzqBmVYNWNfpiD6oARzJ2miYuca",
+  "attacker": "DoMUS2ut1AV8FmvzkC17FmDjqZ5civYVz7tsX1X8VSs1"
+}
