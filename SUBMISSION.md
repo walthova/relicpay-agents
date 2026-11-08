@@ -8,7 +8,7 @@
 
 **Repo:** https://github.com/walthova/relicpay-agents
 
-**Program (devnet):** `HwMQv76mcuPCMmoW3APdn3ceqikHWoWRq1YVy5n3PurH`
+**Program (live on devnet):** `HwMQv76mcuPCMmoW3APdn3ceqikHWoWRq1YVy5n3PurH` (https://explorer.solana.com/address/HwMQv76mcuPCMmoW3APdn3ceqikHWoWRq1YVy5n3PurH?cluster=devnet)
 
 ## What it does
 

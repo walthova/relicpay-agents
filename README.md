@@ -66,6 +66,12 @@ Every error has a plain-English message that the agent reads back to the owner.
 
 - Program ID (devnet): `HwMQv76mcuPCMmoW3APdn3ceqikHWoWRq1YVy5n3PurH`
 - Explorer: https://explorer.solana.com/address/HwMQv76mcuPCMmoW3APdn3ceqikHWoWRq1YVy5n3PurH?cluster=devnet
+- **Live on devnet** (deployed 2026-11-08). A real run of `./demo.sh`:
+  - [Agent buys a 40 USDC print, merchant paid up front](https://explorer.solana.com/tx/41crLpKZLrcwe2Rp3YWYB8kZ7AiJv449pxa7YAovLc8fEAiGiotcThJJyknQ7b3X6EvcbxJKsViyf4MR9229MsC6?cluster=devnet)
+  - [Owner writes the mandate](https://explorer.solana.com/tx/2JRX7r4JguokfkrZeuA2WxaS4JX2wpFmP5AWntJ361dLgtvzzhq4mSZzpNrAnNc22bQFp7vWE44ZZVrH7XjbFpFw?cluster=devnet)
+  - [Owner revokes the agent in one transaction](https://explorer.solana.com/tx/45QDuFsKiNd7ph8WAgJ7E74rSZVQw2cpf8zhd2idzFZwhZozawVo12dpg7vZN497Bv3TCSAKs7HLgBK88HRqFWAy?cluster=devnet)
+  - [Owner repays; trust record goes up](https://explorer.solana.com/tx/29M9cj5x2tJWdTySxq9mEF2RYoz4aiREYeXCUrMGWcdXjwnrcodS7mDRc4Qt9Lhs8MwQGnZ4d8SUtNWZ1wGBJEvH?cluster=devnet)
+  - The over-cap, prompt-injection and post-revoke attempts were all rejected by the program before any USDC moved, so they leave no successful transaction.
 - Anchor 0.32.1. Checked math everywhere, `has_one` and signer constraints on every owner action, PDA seed validation on every account, pool initialization gated on the program's upgrade authority.
 
 | Instruction | Signer | What it does |
