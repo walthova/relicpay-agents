@@ -16,3 +16,6 @@ test-ledger/
 out/
 *.log
 .DS_Store
+
+# Demo videos (large; share separately)
+recordings/

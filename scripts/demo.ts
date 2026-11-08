@@ -32,7 +32,9 @@ import {
 import { Intent, act, parseIntent } from "../agent/agent";
 
 const useClaude = process.argv.includes("--claude");
-const pause = (ms: number) => new Promise((r) => setTimeout(r, ms));
+// DEMO_PAUSE (ms) slows the demo between steps, e.g. for a narrated recording.
+const PAUSE = Number(process.env.DEMO_PAUSE ?? 800);
+const pause = (_ms?: number) => new Promise((r) => setTimeout(r, PAUSE));
 const step = (n: number, title: string) => console.log(`\n\x1b[1m[${n}] ${title}\x1b[0m`);
 
 async function agentTry(agent: Keypair, owner: Keypair, request: string, fallback: Intent) {
@@ -43,6 +45,8 @@ async function agentTry(agent: Keypair, owner: Keypair, request: string, fallbac
 }
 
 async function main() {
+  console.log("\x1b[1mRelicPay Agents\x1b[0m  Credit for you and your agent.");
+  console.log("Live on Solana devnet. Mock USDC. Not audited.\n");
   const deployer = loadKeypair("deployer.json");
   const admin = programFor(deployer);
 
