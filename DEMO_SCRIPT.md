@@ -1,4 +1,4 @@
-# Demo video voice-over (matches `RelicPay-Agents-DEMO.mp4`, about 2:04)
+# Demo video voice-over (matches `RelicPay-Agents-Visual-Demo.mp4`, about 2:04)
 
 The video is the `/story` page of the dashboard (`app/src/pages/story.tsx`), recorded in Chrome by `scripts/record-story.js`. Every number, verdict and transaction in it comes from a real devnet run (`app/src/lib/demo-run.json`, written by `./demo.sh`). Read each block when its title appears on screen.
 
