@@ -1,4 +1,6 @@
-# MLH Solana Hackathon submission (draft, review before submitting)
+# MLH Solana Hackathon submission
+
+**Status (2026-11-09):** not submitted. The MLH Solana Hackathon closed submissions at 1:00 PM ET on 2026-11-08; the attempt at 1:12 PM ET was refused. The project exists on Walter's MLH profile as "RelicPay Agents" (unattached to any event) and can be reused for a later event or a late-submission request. This text doubles as the base for grant and hackathon applications.
 
 **Project name:** RelicPay Agents
 
